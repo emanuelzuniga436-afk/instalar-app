@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Instalar App</title>
+<style>
+  :root { --bg:#f4f5f7; --card:#fff; --text:#16181d; --muted:#5d6370; --accent:#2f7d4f; --border:#e2e4e9; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#111317; --card:#1b1e24; --text:#eceef2; --muted:#9aa1ad; --accent:#4fb37a; --border:#2b2f37; } }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--text); font:16px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif; }
+  main { max-width:520px; margin:0 auto; padding:32px 16px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:16px; padding:24px; }
+  h1 { font-size:1.5rem; margin:0 0 4px; }
+  .meta { color:var(--muted); font-size:.9rem; margin-bottom:20px; }
+  .btn { display:block; text-align:center; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; padding:16px; border-radius:12px; font-size:1.1rem; }
+  .btn:active { opacity:.85; }
+  #qrbox { display:none; text-align:center; margin-top:24px; }
+  #qrbox canvas, #qrbox img { margin:12px auto; background:#fff; padding:10px; border-radius:8px; }
+  #url { font-family:ui-monospace,Consolas,monospace; font-size:.95rem; word-break:break-all; }
+  ol { padding-left:20px; color:var(--muted); }
+  ol li { margin-bottom:6px; }
+  h2 { font-size:1.05rem; margin:24px 0 8px; }
+  code { font-size:.75rem; word-break:break-all; color:var(--muted); }
+</style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <h1>Instalar la app</h1>
+    <div class="meta">Archivo APK · <span id="size">26 MB</span></div>
+    <a class="btn" id="dl" href="https://github.com/emanuelzuniga436-afk/instalar-app/releases/latest/download/app.apk">Descargar APK</a>
+
+    <div id="qrbox">
+      <h2>Escanea con tu teléfono</h2>
+      <div id="qr"></div>
+      <div id="url"></div>
+    </div>
+
+    <h2>Cómo instalarla en Android</h2>
+    <ol>
+      <li>Toca <b>Descargar APK</b> (o escanea el QR desde la PC).</li>
+      <li>Abre el archivo descargado desde la notificación o la app <b>Archivos</b>.</li>
+      <li>Si aparece un aviso, permite <b>“Instalar apps desconocidas”</b> para tu navegador.</li>
+      <li>Toca <b>Instalar</b>.</li>
+    </ol>
+    <h2>SHA-256</h2>
+    <code>451B4A8C116A90BE8E802215CD72991F7FB33588CB9FB349B8C56734DDFA3FBE</code>
+  </div>
+</main>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  // Show QR only on desktop (phones just tap the button)
+  var isMobile = /Android|iPhone|iPad/i.test(navigator.userAgent);
+  var u = location.protocol.indexOf('http') === 0 ? location.href.split('#')[0] : 'https://emanuelzuniga436-afk.github.io/instalar-app/';
+  if (!isMobile && window.QRCode) {
+    document.getElementById('qrbox').style.display = 'block';
+    document.getElementById('url').textContent = u;
+    new QRCode(document.getElementById('qr'), { text: u, width: 200, height: 200 });
+  }
+</script>
+</body>
+</html>
